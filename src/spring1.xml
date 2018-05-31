@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--<bean id="triangle" class="org.qwerty.nit.Triangle1">-->
+    <!--<property name="type" value="Equilateral"/>  Preset value for property using Setter (Setter Injection)-->
+    <!--<constructor-arg value="Equilateral"/>-->
+    <!--<constructor-arg value="20"/>-->
+    <!--</bean>-->
+    <!--<bean id="triangle" class="org.qwerty.nit.Triangle" autowire="byName"/> AutoWiring -->
+    <!--<bean id="triangle" class="org.qwerty.nit.Triangle4" init-method="customInit" destroy-method="customDestroy"> Custom Lifecycle callback methods-->
+    <bean id="triangle" class="org.qwerty.nit.Triangle3">
+        <property name="pointA" ref="zeroPoint"/>
+        <property name="pointB">
+            <bean class="org.qwerty.nit.Point"> <!-- Inner Bean-->
+                <property name="x" value="-20"/>
+                <property name="y" value="0"/>
+            </bean>
+        </property>
+        <property name="pointC">
+            <bean class="org.qwerty.nit.Point">
+                <property name="x" value="0"/>
+                <property name="y" value="20"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="zeroPoint" class="org.qwerty.nit.Point">
+        <property name="x" value="${pointA.pointX}"/>
+        <property name="y" value="${pointA.pointY}"/>
+    </bean>
+
+    <!--<bean class="org.qwerty.nit.DisplayNameBeanPostProcessor"/> Using BeanPostProcessor -->
+    <bean class="org.qwerty.nit.BeanFactoryPostProcessorExample"/> <!--Using BeanFactoryPostProcessor -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:pointsConfig.properties"/>
+    </bean>
+    <!--<bean id="point1" class="org.qwerty.nit.Point">-->
+        <!--<property name="x" value="-20"/>-->
+        <!--<property name="y" value="0"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="point2" class="org.qwerty.nit.Point">-->
+        <!--<property name="x" value="0"/>-->
+        <!--<property name="y" value="20"/>-->
+    <!--</bean>-->
+
+</beans>
