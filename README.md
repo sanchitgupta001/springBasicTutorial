@@ -1,4 +1,4 @@
-# springBasicTutorial
+# Spring Basic Tutorial
 This repository contains code snippets for basic Spring Framework concepts.
 
 DrawingApp is the main file for the project to be executed.
